@@ -39,9 +39,19 @@ $app->get('/hello', function (Request $request, Response $response) {
 });
 
 // route with parameters, third argument needed in function 
-$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
+$app->get('/hello/test/{name}', function (Request $request, Response $response, array $args) {
     $name = ucfirst($args['name']);  //ucfirst capitalize first letter 
     $response->getBody()->write('hello' . " " . $name);
+    return $response;
+});
+
+// route with parameters, templating service 
+$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
+    $name = ucfirst($args['name']);
+    $html = $this->get('templating')->render('hello.html', [
+        'name' => $name
+    ]);
+    $response->getBody()->write($html);
     return $response;
 });
 
