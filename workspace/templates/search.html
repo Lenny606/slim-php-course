@@ -1,0 +1,20 @@
+{{> header_copy.html}}
+
+<!-- form with inpuot -->
+<form>
+    <input type="text" name="q" value="{{query}}">
+    <button>Start</button>
+</form>
+
+<h2>List of albums:</h2>
+<!-- Loop -->
+<div class="albums">
+    {{#albums}}
+    <div>
+        <h3>{{title}}</h3>
+        <p>{{artist}}</p>
+    </div>
+    {{/albums}}
+</div>
+
+{{>footer.html}}
